@@ -64,6 +64,7 @@
     <Compile Include="Resources\Controller\Geolocalizacion.cs" />
     <Compile Include="Resources\Controller\geo.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Controller\ManegadorWifi.cs" />
     <Compile Include="Resources\Controller\services1.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
