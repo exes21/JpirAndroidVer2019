@@ -24,7 +24,7 @@ namespace JPIRver2019.Resources.Controller
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-           // StartService(new Intent(this, typeof(services1)));
+            StartService(new Intent(this, typeof(services1)));
             base.OnCreate(savedInstanceState);
 
             if (CheckSelfPermission(Manifest.Permission.AccessCoarseLocation) != (int)Permission.Granted)
@@ -35,14 +35,15 @@ namespace JPIRver2019.Resources.Controller
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            ManegadorWifi manejador = new ManegadorWifi();
+           
             Button button = this.FindViewById<Button>(Resource.Id.button_submit);
             button.Click += Button_click;
             Toast.MakeText(ApplicationContext,"entrando a la funcion" , ToastLength.Long).Show();
-            
+            ManegadorWifi manejador = new ManegadorWifi();
             double x = manejador.getPing("8.8.8.8");
 
-            Toast.MakeText(ApplicationContext, x.ToString() + "%", ToastLength.Long).Show();
+
+           // Toast.MakeText(ApplicationContext, x.ToString, ToastLength.Long).Show();
         }
 
         private void Button_click(object sender, EventArgs e)
@@ -64,7 +65,7 @@ namespace JPIRver2019.Resources.Controller
             try
             {
                 timer = new System.Timers.Timer();
-                timer.Interval = 5000;
+                timer.Interval = 1000;
                 timer.Elapsed += OnTimedEvent;
                 timer.Enabled = true;
                 timer.Start();
@@ -89,9 +90,34 @@ namespace JPIRver2019.Resources.Controller
         {
             RunOnUiThread(async () =>
             {
-                geo _geo = new geo();
-                Position _position = await _geo.GetPosition();
-                Toast.MakeText(ApplicationContext, _position.Latitude.ToString() + "," + _position.Longitude, ToastLength.Long).Show();
+
+                //todo lo que ponga aquí se repite cada x (ahora 1) segundo
+
+                ManegadorWifi manejador = new ManegadorWifi();
+
+               // Context context = this.ApplicationContext;
+
+               // int x = manejador.getSignLevel(context);
+
+            
+               //Console.WriteLine("Nseñal es: {0} ", x);
+
+
+                double x = manejador.getPing("8.8.8.8");
+
+                
+
+                //geo _geo = new geo();
+                //Position _position = await _geo.GetPosition();
+                //Toast.MakeText(ApplicationContext, _position.Latitude.ToString() + "," + _position.Longitude, ToastLength.Long).Show();
+
+
+
+
+
+
+
+
 
             });
         }

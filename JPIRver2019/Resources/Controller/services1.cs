@@ -31,7 +31,8 @@ public class services1 : Service
             IsBackground = true
         };
         hiloprincipal.Start();
-           // Console.WriteLine("estoy en el SERVICIO");
+
+           
 
 
 
@@ -89,15 +90,31 @@ public class services1 : Service
         }
         private async void ejecutarhilo()
         {
-            ArmaJson miJson = new ArmaJson();
-            await miJson.armarAsync();
+            //   ArmaJson miJson = new ArmaJson();
+            // await miJson.armarAsync();
 
 
-           // EnviaJson envia = new EnviaJson();
+            // EnviaJson envia = new EnviaJson();
             //envia.sendJson(miJson);
 
-           Console.WriteLine("estoy en el SERVICIO");
-             // await _ServiceData.AddTodoItemAsync(_TodoItem);
+            // Console.WriteLine("estoy en el SERVICIO");
+            // await _ServiceData.AddTodoItemAsync(_TodoItem);
+
+
+
+            //ManegadorWifi manejador = new ManegadorWifi();
+
+            //Context context = this.ApplicationContext;
+
+            //int x = manejador.getSignLevel(context);
+
+
+
+            //Console.WriteLine("estoy en el SERVICIo y la el nivel del señal es: {0} ", x);
+
+
+
+
         }
 
 
