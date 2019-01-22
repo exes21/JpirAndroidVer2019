@@ -18,7 +18,7 @@ namespace JPIRver2019.Resources.Controller
         {
             geo _geo = new geo();
             Position _position = await _geo.GetPosition();
-            Geolocalizacion miLoca = new Geolocalizacion()
+            Datos miLoca = new Datos()
             {
                 lat = (Double)_position.Latitude,
                 lng = (Double)_position.Longitude,

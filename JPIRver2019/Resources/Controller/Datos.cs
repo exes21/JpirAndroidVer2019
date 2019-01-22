@@ -12,12 +12,14 @@ using Android.Widget;
 
 namespace JPIRver2019.Resources.Controller
 {
-    class Geolocalizacion
+    class Datos
     {
  
         
-        public double lat { get; set; }
-        public double lng { get; set; }
+        public double lat { get; set; } //latitud
+        public double lng { get; set; } //longitud
+
+
     }
 
 

@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="Resources\Controller\ArmaJson.cs" />
     <Compile Include="Resources\Controller\EnviaJson.cs" />
-    <Compile Include="Resources\Controller\Geolocalizacion.cs" />
+    <Compile Include="Resources\Controller\Datos.cs" />
     <Compile Include="Resources\Controller\geo.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Controller\ManegadorWifi.cs" />

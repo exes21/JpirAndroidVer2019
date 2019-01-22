@@ -12,7 +12,7 @@ namespace JPIRver2019.Resources.Controller
 
         
 
-        public void sendJson(Geolocalizacion datos)
+        public void sendJson(Datos datos)
         {
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://hookb.in/3O22kJJO61toe20VqNyK");

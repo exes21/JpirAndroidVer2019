@@ -39,17 +39,16 @@ namespace JPIRver2019.Resources.Controller
             Button button = this.FindViewById<Button>(Resource.Id.button_submit);
             button.Click += Button_click;
             Toast.MakeText(ApplicationContext,"entrando a la funcion" , ToastLength.Long).Show();
-            ManegadorWifi manejador = new ManegadorWifi();
-            double x = manejador.getPing("8.8.8.8");
-
-
-           // Toast.MakeText(ApplicationContext, x.ToString, ToastLength.Long).Show();
+            
         }
 
         private void Button_click(object sender, EventArgs e)
         {
 
-          
+         //   ManegadorWifi manejador = new ManegadorWifi();
+           //  manejador.getIProute();
+
+          //  Toast.MakeText(ApplicationContext, x, ToastLength.Long).Show();
 
 
             Thread hiloprincipal = new Thread(new ThreadStart(hilo2))
@@ -93,7 +92,7 @@ namespace JPIRver2019.Resources.Controller
 
                 //todo lo que ponga aquí se repite cada x (ahora 1) segundo
 
-                ManegadorWifi manejador = new ManegadorWifi();
+             //   ManegadorWifi manejador = new ManegadorWifi();
 
                // Context context = this.ApplicationContext;
 
@@ -103,7 +102,7 @@ namespace JPIRver2019.Resources.Controller
                //Console.WriteLine("Nseñal es: {0} ", x);
 
 
-                double x = manejador.getPing("8.8.8.8");
+               // double x = manejador.getPing("8.8.8.8");
 
                 
 

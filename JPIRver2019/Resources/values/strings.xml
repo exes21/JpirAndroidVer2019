@@ -1,7 +1,7 @@
 <resources>
   <string name="app_name">JPIR ANDROID</string>
   <string name="enter_email">Ingrese su dirección de correo</string>
-  <string name="enter_url">Ingrese la dirección web</string>
+  <string name="enter_url">Ingrese su contraseña</string>
   <string name="submit">Enviar</string>
 
   <array name="swipe_refresh_colors">

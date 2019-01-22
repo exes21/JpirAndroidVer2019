@@ -53,12 +53,17 @@
 				android:gravity="center_horizontal"
 				android:text="@string/enter_email"
 				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+			<TextView
+				android:text=""
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:editable = "false"
+				android:id="@+id/textView1" />
 			<EditText
-				android:id="@+id/text_ip"
-				android:layout_marginTop="18dp"
+				android:inputType="textPassword"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:inputType="textEmailAddress"/>
+				android:id="@+id/editText1" />
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="38.0dp"
@@ -71,12 +76,12 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="35dp"
 				android:visibility="gone" />
-			<TextView
+				<TextView
 				android:text=""
 				android:layout_width="match_parent"
 				android:layout_height="40dp"
 				android:editable = "false"
-				android:id="@+id/textView1" />
+				android:id="@+id/textView2" />
 			<Button
 				android:id="@+id/button_submit"
 				android:layout_width="match_parent"
