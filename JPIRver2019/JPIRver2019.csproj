@@ -60,11 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Controller\ArmaJson.cs" />
+    <Compile Include="Resources\Controller\Calculate.cs" />
     <Compile Include="Resources\Controller\EnviaJson.cs" />
     <Compile Include="Resources\Controller\Datos.cs" />
     <Compile Include="Resources\Controller\geo.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Controller\ManegadorWifi.cs" />
+    <Compile Include="Resources\Controller\MiPing.cs" />
     <Compile Include="Resources\Controller\services1.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,9 +18,10 @@ namespace JPIRver2019.Resources.Controller
     [Service]
 public class services1 : Service
 {
-    static readonly string TAG = typeof(services1).FullName;
-    System.Timers.Timer timer = new System.Timers.Timer();
-    public IBinder Binder { get; private set; }
+       
+        static readonly string TAG = typeof(services1).FullName;
+        System.Timers.Timer timer = new System.Timers.Timer();
+        public IBinder Binder { get; private set; }
     public override void OnCreate()
     {
         // This method is optional to implement
@@ -64,7 +65,9 @@ public class services1 : Service
 
         private void hilo2()
         {
-            try
+            Console.WriteLine("estoy en el SERVICIo");
+      
+             try
             {
                 timer = new System.Timers.Timer();
                 timer.Interval = 2000;
@@ -82,17 +85,40 @@ public class services1 : Service
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
 
+
+            
+
+
+
+
             Thread hilo = new Thread(new ThreadStart(ejecutarhilo))
             {
                 IsBackground = true
+
             };
+            
             hilo.Start();
+
+
+            // hilo.Join();
+            //    Thread.Sleep(60000);
+
+            //hilo.Join();
+
+
         }
         private async void ejecutarhilo()
         {
-            //   ArmaJson miJson = new ArmaJson();
-            // await miJson.armarAsync();
+            ArmaJson miJson = new ArmaJson();
+            await miJson.armarAsync();
 
+            Console.WriteLine("llamo a medicion");
+
+
+           
+            // Thread.Sleep(60000);
+
+            await miJson.armarAsync();
 
             // EnviaJson envia = new EnviaJson();
             //envia.sendJson(miJson);
@@ -108,9 +134,8 @@ public class services1 : Service
 
             //int x = manejador.getSignLevel(context);
 
+           
 
-
-            //Console.WriteLine("estoy en el SERVICIo y la el nivel del señal es: {0} ", x);
 
 
 

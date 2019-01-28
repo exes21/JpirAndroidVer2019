@@ -11,6 +11,7 @@ using System.Threading;
 
 using Plugin.Geolocator.Abstractions;
 using JPIRver2019.Resources.controller;
+using System.Net;
 
 namespace JPIRver2019.Resources.Controller
 {
@@ -24,7 +25,13 @@ namespace JPIRver2019.Resources.Controller
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            StartService(new Intent(this, typeof(services1)));
+          //  StartService(new Intent(this, typeof(services1)));
+
+
+            
+
+
+           // Toast.MakeText(ApplicationContext, "llame al servicio", ToastLength.Long).Show();
             base.OnCreate(savedInstanceState);
 
             if (CheckSelfPermission(Manifest.Permission.AccessCoarseLocation) != (int)Permission.Granted)
@@ -45,8 +52,17 @@ namespace JPIRver2019.Resources.Controller
         private void Button_click(object sender, EventArgs e)
         {
 
-         //   ManegadorWifi manejador = new ManegadorWifi();
-           //  manejador.getIProute();
+            ManegadorWifi manejador = new ManegadorWifi();
+            //  MiPing ping = new MiPing();
+            //  ping = manejador.getPing();
+            Context context = this.ApplicationContext;
+            manejador.getGateway(context);
+
+
+            //Console.WriteLine("Gateway es: {0} ",  x.ToString());
+
+           // Calculate calculate = new Calculate();
+            //calculate.getJitter(ping.RTTdeMiPing);
 
           //  Toast.MakeText(ApplicationContext, x, ToastLength.Long).Show();
 
@@ -64,7 +80,7 @@ namespace JPIRver2019.Resources.Controller
             try
             {
                 timer = new System.Timers.Timer();
-                timer.Interval = 1000;
+                timer.Interval = 3000;
                 timer.Elapsed += OnTimedEvent;
                 timer.Enabled = true;
                 timer.Start();
@@ -92,26 +108,24 @@ namespace JPIRver2019.Resources.Controller
 
                 //todo lo que ponga aquí se repite cada x (ahora 1) segundo
 
-             //   ManegadorWifi manejador = new ManegadorWifi();
+                   ManegadorWifi manejador = new ManegadorWifi();
 
-               // Context context = this.ApplicationContext;
+                // Context context = this.ApplicationContext;
 
-               // int x = manejador.getSignLevel(context);
-
-            
-               //Console.WriteLine("Nseñal es: {0} ", x);
+               
 
 
-               // double x = manejador.getPing("8.8.8.8");
+                // double x = manejador.getPing("8.8.8.8");
 
-                
+
 
                 //geo _geo = new geo();
                 //Position _position = await _geo.GetPosition();
                 //Toast.MakeText(ApplicationContext, _position.Latitude.ToString() + "," + _position.Longitude, ToastLength.Long).Show();
 
 
-
+                //ArmaJson miJson = new ArmaJson();
+               // await miJson.armarAsync();
 
 
 
@@ -119,6 +133,8 @@ namespace JPIRver2019.Resources.Controller
 
 
             });
+
+            
         }
 
         
