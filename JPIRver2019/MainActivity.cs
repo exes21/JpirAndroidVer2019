@@ -12,26 +12,32 @@ using System.Threading;
 using Plugin.Geolocator.Abstractions;
 using JPIRver2019.Resources.controller;
 using System.Net;
+using Java.IO;
+using Android.Util;
 
 namespace JPIRver2019.Resources.Controller
 {
+    
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+
+   
     public class MainActivity : AppCompatActivity
     {
         System.Timers.Timer timer = new System.Timers.Timer();
 
-       
-       
+
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-          //  StartService(new Intent(this, typeof(services1)));
-
-
+            //  mail = (EditText)FindViewById(Resource.Id.);
             
 
 
-           // Toast.MakeText(ApplicationContext, "llame al servicio", ToastLength.Long).Show();
+           
+
+
+            // Toast.MakeText(ApplicationContext, "llame al servicio", ToastLength.Long).Show();
             base.OnCreate(savedInstanceState);
 
             if (CheckSelfPermission(Manifest.Permission.AccessCoarseLocation) != (int)Permission.Granted)
@@ -41,30 +47,75 @@ namespace JPIRver2019.Resources.Controller
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
-           
+            
             Button button = this.FindViewById<Button>(Resource.Id.button_submit);
             button.Click += Button_click;
-            Toast.MakeText(ApplicationContext,"entrando a la funcion" , ToastLength.Long).Show();
+           // Toast.MakeText(ApplicationContext,"entrando a la funcion" , ToastLength.Long).Show();
+           
             
         }
 
-        private void Button_click(object sender, EventArgs e)
+        private async void Button_click(object sender, EventArgs e)
         {
-
-            ManegadorWifi manejador = new ManegadorWifi();
-            //  MiPing ping = new MiPing();
-            //  ping = manejador.getPing();
-            Context context = this.ApplicationContext;
-            manejador.getGateway(context);
+          
+            //---------------------
 
 
-            //Console.WriteLine("Gateway es: {0} ",  x.ToString());
 
-           // Calculate calculate = new Calculate();
-            //calculate.getJitter(ping.RTTdeMiPing);
+            var url = this.FindViewById<EditText>(Resource.Id.url);
+            Settings.url = url.Text;
 
-          //  Toast.MakeText(ApplicationContext, x, ToastLength.Long).Show();
+
+            var mail = this.FindViewById<EditText>(Resource.Id.text_email);
+            string email = mail.Text;
+            if (email == "")
+            {
+                Toast.MakeText(ApplicationContext, "Debe introducir su correo electronico",
+                    ToastLength.Long).Show(); 
+            }
+            else
+            {
+                Settings.email = email;
+               // Toast.MakeText(ApplicationContext, Settings.email, ToastLength.Long).Show();
+            }
+
+            var pass = this.FindViewById<EditText>(Resource.Id.pass);
+            string passwor = pass.Text;
+            if (passwor == "")
+            {
+                Toast.MakeText(ApplicationContext, "Debe introducir su contraseña", ToastLength.Long).Show();
+            }
+            else
+            {
+                Settings.pass = passwor;
+            }
+            if(email != "" && passwor != "")
+            {
+                Toast.MakeText(ApplicationContext, "¡Conectando!", ToastLength.Long).Show();
+
+                StartService(new Intent(this, typeof(services1)));
+                // Activity.Finish;
+            }
+              
+
+            // // Calculate calculate = new Calculate();
+            //  //calculate.getJitter(ping.RTTdeMiPing);
+            //escribir(email);
+            //  leerFicheroMemoriaInterna();
+
+
+            // bool y = await ManagerFicheros.IsFileExistAsync("prueba");
+
+            // Toast.MakeText(ApplicationContext, y.ToString(), ToastLength.Long).Show();
+
+
+            // x = await ManagerFicheros.ReadAllTextAsync("prueba");
+
+
+
+
+
+
 
 
             Thread hiloprincipal = new Thread(new ThreadStart(hilo2))
@@ -87,7 +138,7 @@ namespace JPIRver2019.Resources.Controller
             }
             catch (Exception ex)
             {
-                Toast.MakeText(ApplicationContext, ex.Message, ToastLength.Long).Show();
+               // Toast.MakeText(ApplicationContext, ex.Message, ToastLength.Long).Show();
             }
 
         }
@@ -108,11 +159,11 @@ namespace JPIRver2019.Resources.Controller
 
                 //todo lo que ponga aquí se repite cada x (ahora 1) segundo
 
-                   ManegadorWifi manejador = new ManegadorWifi();
+                //ManegadorWifi manejador = new ManegadorWifi();
 
                 // Context context = this.ApplicationContext;
 
-               
+
 
 
                 // double x = manejador.getPing("8.8.8.8");
@@ -125,8 +176,10 @@ namespace JPIRver2019.Resources.Controller
 
 
                 //ArmaJson miJson = new ArmaJson();
-               // await miJson.armarAsync();
+                // await miJson.armarAsync();
 
+
+              
 
 
 
@@ -137,8 +190,7 @@ namespace JPIRver2019.Resources.Controller
             
         }
 
-        
-    }
-
        
+
     }
+}

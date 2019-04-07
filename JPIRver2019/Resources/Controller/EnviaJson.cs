@@ -9,19 +9,17 @@ namespace JPIRver2019.Resources.Controller
 {
     class EnviaJson
     {
-       // private ArmaJson miJson;
-
-        
-
-        public void sendJson(Datos datos)
+        public string sendJson(Datos datos)
         {
+            
+            var result = "";
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://jpir-web.herokuapp.com/recibe");
-
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(Settings.url);
+                //+ "/api/data/data_gather"
                 httpWebRequest.ContentType = "application/json"; //tipo de archivo que contiene o MIME
                 httpWebRequest.Method = "POST"; //METODO
-
+                
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     string json = JsonConvert.SerializeObject(datos);
@@ -30,23 +28,32 @@ namespace JPIRver2019.Resources.Controller
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-
+                
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-
+                
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
-                    var result = streamReader.ReadToEnd();
+                     result = streamReader.ReadToEnd();
                 }
 
-                
+                if (result  != null)
+                {
+                    
+                    Console.WriteLine("envie un json");
+                }
+                else
+                {
+                    Console.WriteLine("resultado es " + result.ToString());
+                }
+
+
             }
             catch (Exception e)
             {
 
             }
-
-
-
+            
+            return result;
 
         }
     }

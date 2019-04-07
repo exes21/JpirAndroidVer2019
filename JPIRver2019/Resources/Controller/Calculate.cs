@@ -21,16 +21,12 @@ namespace JPIRver2019.Resources.Controller
 
             foreach (long element in RTT)
             {
-              //  Console.WriteLine("el RTT ES: {0} ", element);
                 count= element + count;
                 i++;
-               
-
             }
-            
-            //Console.WriteLine("estoy adentro {0}", i + "vez/veces");
+       
             count = count / (long) i;
-           // Console.WriteLine("el Jitter es:" + count);
+
             return count;
         }
 
@@ -48,8 +44,6 @@ namespace JPIRver2019.Resources.Controller
             {
                 
                 x = difference(element, RTT[i]);
-                
-               // Console.WriteLine("Diferencia: {0} y {1}, la dif es: {2}", element, RTT[i], x);
 
                 if(i < RTT.Count() - 1)
                 {
@@ -59,7 +53,6 @@ namespace JPIRver2019.Resources.Controller
                 count += x;
 
             }
-           // Console.WriteLine("Jitter = {0}", count/4);
 
             return count /4;
         }

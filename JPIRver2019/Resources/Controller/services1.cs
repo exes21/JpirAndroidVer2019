@@ -18,7 +18,11 @@ namespace JPIRver2019.Resources.Controller
     [Service]
 public class services1 : Service
 {
-       
+        
+        ArmaJson miJson = new ArmaJson();
+        EnviaJson enviaJson = new EnviaJson();
+        
+
         static readonly string TAG = typeof(services1).FullName;
         System.Timers.Timer timer = new System.Timers.Timer();
         public IBinder Binder { get; private set; }
@@ -26,15 +30,14 @@ public class services1 : Service
     {
         // This method is optional to implement
         base.OnCreate();
-
-        Thread hiloprincipal = new Thread(new ThreadStart(hilo2))
+           
+            Thread hiloprincipal = new Thread(new ThreadStart(hilo2))
         {
             IsBackground = true
         };
         hiloprincipal.Start();
 
-           
-
+            hiloprincipal.Join();
 
 
 
@@ -63,17 +66,37 @@ public class services1 : Service
     }
 
 
-        private void hilo2()
+        private async void hilo2()
         {
-            Console.WriteLine("estoy en el SERVICIo");
-      
-             try
+            //Context context = this.ApplicationContext;
+            //ManegadorWifi manejador = new ManegadorWifi();
+            //int uno = manejador.getLinkSpeed(context);
+            //int dos = manejador.getSignLevel(context);
+            //string tres = manejador.getSSID(context);
+            //string cuatro = manejador.getGateway(context).ToString();
+
+            //miJson.armarAsync(uno, dos, tres, cuatro);
+            try
             {
+                Context context = this.ApplicationContext;
+                ManegadorWifi manejador = new ManegadorWifi();
+                int uno = manejador.getLinkSpeed(context);
+                int dos = manejador.getSignLevel(context);
+                string tres = manejador.getSSID(context);
+                string cuatro = manejador.getGateway(context).ToString();
+                string MacAddress1 = manejador.getMacAddreess(context);
+                string macRouter = manejador.macDelRouter(context);
+
+                miJson.armarAsync(uno, dos, tres, cuatro, MacAddress1, macRouter);
+
+
+
                 timer = new System.Timers.Timer();
-                timer.Interval = 2000;
-                timer.Elapsed += OnTimedEvent;
+                timer.Interval = 60000; //mas o menos cada 1 minutos se actuliza
+                timer.Elapsed += OnTimedEventAsync;
                 timer.Enabled = true;
                 timer.Start();
+                
             }
             catch (Exception ex)
             {
@@ -82,43 +105,29 @@ public class services1 : Service
 
         }
 
-        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private async void OnTimedEventAsync(Object source, System.Timers.ElapsedEventArgs e)
         {
+            Context context = this.ApplicationContext;
+            ManegadorWifi manejador = new ManegadorWifi();
+            int uno = manejador.getLinkSpeed(context);
+            int dos = manejador.getSignLevel(context);
+           string tres = manejador.getSSID(context);
+            string cuatro = manejador.getGateway(context).ToString();
+            string MacAddress1 = manejador.getMacAddreess(context);
+            string macRouter = manejador.macDelRouter(context);
 
-
-            
-
-
-
-
-            Thread hilo = new Thread(new ThreadStart(ejecutarhilo))
-            {
-                IsBackground = true
-
-            };
-            
-            hilo.Start();
-
-
-            // hilo.Join();
-            //    Thread.Sleep(60000);
-
-            //hilo.Join();
-
-
+            miJson.armarAsync(uno, dos, tres, cuatro, MacAddress1, macRouter);
         }
         private async void ejecutarhilo()
         {
-            ArmaJson miJson = new ArmaJson();
-            await miJson.armarAsync();
-
-            Console.WriteLine("llamo a medicion");
 
 
            
+
+
             // Thread.Sleep(60000);
 
-            await miJson.armarAsync();
+            //  await miJson.armarAsync();
 
             // EnviaJson envia = new EnviaJson();
             //envia.sendJson(miJson);
@@ -134,7 +143,7 @@ public class services1 : Service
 
             //int x = manejador.getSignLevel(context);
 
-           
+
 
 
 
@@ -143,5 +152,6 @@ public class services1 : Service
         }
 
 
+        
     }
 }

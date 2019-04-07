@@ -8,6 +8,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Linq;
 using Android.Net;
+using Java.Lang;
 
 namespace JPIRver2019.Resources.Controller
 {
@@ -35,6 +36,41 @@ namespace JPIRver2019.Resources.Controller
             return wifiManager.ConnectionInfo.Rssi;
         }
 
+        public string getMacAddreess(Context context)
+        {
+            try
+            {
+                System.Collections.IList all = Java.Util.Collections.List(Java.Net.NetworkInterface.NetworkInterfaces);
+                foreach (Java.Net.NetworkInterface nif in all)
+                {
+                    if (nif.Name != "wlan0") continue;
+
+                    byte[] macBytes = nif.GetHardwareAddress();
+                    if (macBytes == null)
+                    {
+                        return "";
+                    }
+
+                    var res1 = new Java.Lang.StringBuilder();
+                    foreach (byte b in macBytes)
+                    {
+                        res1.Append(Integer.ToHexString(b & 0xFF) + ":");
+                    }
+
+                    if (res1.Length() > 0)
+                    {
+                        res1.DeleteCharAt(res1.Length() - 1);
+                    }
+                    return res1.ToString();
+                }
+            }
+            catch (Java.Lang.Exception ex)
+            {
+            }
+            return "02:00:00:00:00:00";
+        
+    }
+
         //funcion que me devuelve el SSID del router
         public string getSSID(Context context)
         {
@@ -42,7 +78,13 @@ namespace JPIRver2019.Resources.Controller
             return wifiManager.ConnectionInfo.SSID;
         }
 
-        public void getGateway(Context context)
+        public string macDelRouter(Context context)
+        {
+            WifiManager wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
+            return wifiManager.ConnectionInfo.BSSID;
+        }
+
+        public IPAddress getGateway(Context context)
         {
             //este meneo que esta conmentado me guta porque me da la mac address de la red
 
@@ -60,6 +102,12 @@ namespace JPIRver2019.Resources.Controller
             //      }
             //  }
 
+
+
+
+
+
+
             /* NOTA: devuelve el default gate al reves, por obra del espiritu santo, pero se manda así y ya solte esto
              */
 
@@ -68,6 +116,7 @@ namespace JPIRver2019.Resources.Controller
            
             IPAddress address = IPAddress.Parse(gateway);
             Console.WriteLine("\tIP AddrGateway es {0}",address ); 
+            return address;
         }
     
 
