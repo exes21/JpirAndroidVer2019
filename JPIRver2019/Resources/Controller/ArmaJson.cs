@@ -25,7 +25,7 @@ namespace JPIRver2019.Resources.Controller
             geo _geo = new geo(); 
             Position _position = await _geo.GetPosition();
             MiPing iping = manejador.getPing();
-
+            
             Datos datos = new Datos()
             {
                 lat = (Double)_position.Latitude,
@@ -48,7 +48,8 @@ namespace JPIRver2019.Resources.Controller
 
            string x = envia.sendJson(datos);
 
-            
+            Settings.estado = x;
+
         }
 
 

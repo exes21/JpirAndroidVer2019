@@ -9,6 +9,8 @@ using System.Net.Sockets;
 using System.Linq;
 using Android.Net;
 using Java.Lang;
+using System.Collections.Generic;
+using Java.Util;
 
 namespace JPIRver2019.Resources.Controller
 {
@@ -81,10 +83,19 @@ namespace JPIRver2019.Resources.Controller
         public string macDelRouter(Context context)
         {
             WifiManager wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
-            return wifiManager.ConnectionInfo.BSSID;
+            return wifiManager.ConnectionInfo.MacAddress;
+
+
+        }
+        public string prueba(Context context)
+        {
+
+            WifiManager wifiManager = (WifiManager)context.GetSystemService(Context.NetworkStatsService);
+            return wifiManager.ConnectionInfo.MacAddress;
         }
 
-        public IPAddress getGateway(Context context)
+
+            public IPAddress getGateway(Context context)
         {
             //este meneo que esta conmentado me guta porque me da la mac address de la red
 

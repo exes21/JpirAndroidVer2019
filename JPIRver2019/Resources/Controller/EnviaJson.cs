@@ -4,19 +4,22 @@ using System.Net;
 using System.IO;
 using JPIRver2019.Resources.Controller;
 using System;
+using Android.Widget;
 
 namespace JPIRver2019.Resources.Controller
 {
     class EnviaJson
     {
+        public object DependencyService { get; private set; }
+
         public string sendJson(Datos datos)
         {
-            
+            changer status = new changer();
             var result = "";
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(Settings.url);
-                //+ "/api/data/data_gather"
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.0.99" + "/api/data/data_gather");//Settings.url + " /api/data/data_gather");
+                //
                 httpWebRequest.ContentType = "application/json"; //tipo de archivo que contiene o MIME
                 httpWebRequest.Method = "POST"; //METODO
                 
@@ -28,18 +31,26 @@ namespace JPIRver2019.Resources.Controller
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-                
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+
+                HttpWebResponse myResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                if (myResponse.StatusCode == HttpStatusCode.OK)
                 {
-                     result = streamReader.ReadToEnd();
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        result = streamReader.ReadToEnd();
+                    }
                 }
+
+                status.changerStatus(myResponse.StatusDescription);
+                myResponse.Close();
 
                 if (result  != null)
                 {
                     
                     Console.WriteLine("envie un json");
+                    Console.WriteLine("resultado es " + result.ToString());
                 }
                 else
                 {
@@ -48,10 +59,19 @@ namespace JPIRver2019.Resources.Controller
 
 
             }
-            catch (Exception e)
+            catch (WebException x)
             {
+                status.changerStatus(x.Status.ToString());
 
+                //string responcode;
+                //using (var r = new StreamReader(x.Response.GetResponseStream()))
+                //{
+                //    responcode = r.ReadToEnd();
+                //}
             }
+           
+            
+                            
             
             return result;
 

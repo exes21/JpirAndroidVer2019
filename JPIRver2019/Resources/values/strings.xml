@@ -15,5 +15,7 @@
   <string name="correo">Correo:</string>
   <string name="aceptar">ACCEDER</string>
   <string name="terminos">Acepta termminos y condiciones</string>
+  <string name="status1">Conectado</string>
+  <string name="status2">Desconectado</string>
 
 </resources>

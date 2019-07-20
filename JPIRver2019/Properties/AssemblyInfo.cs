@@ -19,6 +19,7 @@ using Android.App;
 [assembly: UsesFeature("android.hardware.location.gps", Required = false)]
 [assembly: UsesFeature("android.hardware.location.network", Required = false)]
 
+
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

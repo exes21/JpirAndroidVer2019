@@ -36,7 +36,12 @@ namespace JPIRver2019.Resources.Controller
             get => AppSettings.GetValueOrDefault(nameof(url), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(url), value);
         }
-        
+
+        public static string estado
+        {
+            get => AppSettings.GetValueOrDefault(nameof(estado), string.Empty);
+            set => AppSettings.AddOrUpdateValue(nameof(estado), value);
+        }
 
     }
     

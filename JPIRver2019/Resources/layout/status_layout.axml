@@ -29,53 +29,53 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/bienvenido"
+				android:text="Usuario:"
 				android:textAlignment="center"
 				android:textSize="24sp"
-				android:textStyle="bold" />
+				android:textStyle="bold"
+				android:id="@+id/textView2" />
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
-				android:text="@string/nota"
 				android:textAlignment="center"
-				android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-				android:textSize="18sp" />
-			<EditText
-				android:id="@+id/text_email"
+				android:textSize="24sp"
+				android:textStyle="bold"
+				android:id="@+id/usuarioNombre" />
+			<LinearLayout
+				android:orientation="horizontal"
+				android:minWidth="25px"
+				android:minHeight="25px"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="18dp"
-				android:inputType="textEmailAddress" />
-			<TextView
+				android:layout_height="35.0dp"
+				android:id="@+id/linearLayout1">
+				<TextView
+					android:layout_width="360.0dp"
+					android:layout_height="match_parent"
+					android:gravity="center_horizontal"
+					android:text="Estado:"
+					android:textAlignment="center"
+					android:textSize="24sp"
+					android:textStyle="bold"
+					android:id="@+id/textView2" />
+			</LinearLayout>
+			<LinearLayout
+				android:orientation="horizontal"
+				android:minWidth="25px"
+				android:minHeight="25px"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:text="@string/enter_email"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-			<EditText
-				android:inputType="textPassword"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:id="@+id/pass" />
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="38.0dp"
-				android:gravity="center_horizontal"
-				android:text="@string/enter_url"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-			<TextView
-				android:id="@+id/textView_response"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="35dp"
-				android:visibility="gone" />
-			<Button
-				android:id="@+id/button_submit"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="18dp"
-				android:text="@string/aceptar" />
+				android:layout_height="35.0dp"
+				android:id="@+id/linearLayout1">
+				<TextView
+					android:layout_width="360.5dp"
+					android:layout_height="match_parent"
+					android:gravity="center_horizontal"
+					android:text=""
+					android:textAlignment="center"
+					android:textSize="24sp"
+					android:textStyle="bold"
+					android:id="@+id/estado" />
+			</LinearLayout>
 		</LinearLayout>
 
   </android.support.v4.widget.SwipeRefreshLayout>
