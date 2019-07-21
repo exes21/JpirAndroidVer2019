@@ -86,24 +86,15 @@ namespace JPIRver2019.Resources.Controller
             {
                 Toast.MakeText(ApplicationContext, "¡Enviando datos!", ToastLength.Long).Show();
                 changer changer = new changer();
-                string x = "";
                 try
                 {
                     todologa todologa = new todologa();
                     todologa.request(this.ApplicationContext);
-                    response response = JsonConvert.DeserializeObject<response>(Settings.estado);
-                    x = response.status;
-                    changer.changerStatus(response.status);
                 }
                 catch (Exception)
                 {
                    // changer.changerStatus(x);
                 }
-                finally
-                {
-                    changer.changerStatus(x);
-                }
-
 
                 RunOnUiThread(() =>
                 {

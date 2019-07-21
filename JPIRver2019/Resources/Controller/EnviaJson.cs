@@ -19,10 +19,11 @@ namespace JPIRver2019.Resources.Controller
             try
             {
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.0.99" + "/api/data/data_gather");//Settings.url + " /api/data/data_gather");
-                //
+
                 httpWebRequest.ContentType = "application/json"; //tipo de archivo que contiene o MIME
                 httpWebRequest.Method = "POST"; //METODO
-                
+                httpWebRequest.Timeout = 10000;
+
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     string json = JsonConvert.SerializeObject(datos);
@@ -59,15 +60,12 @@ namespace JPIRver2019.Resources.Controller
 
 
             }
-            catch (WebException x)
+            catch (WebException ex)
             {
-                status.changerStatus(x.Status.ToString());
-
-                //string responcode;
-                //using (var r = new StreamReader(x.Response.GetResponseStream()))
-                //{
-                //    responcode = r.ReadToEnd();
-                //}
+                var response = ex.Response as HttpWebResponse;
+                if (response == null)
+                    throw;
+                return response.StatusCode.ToString();
             }
            
             

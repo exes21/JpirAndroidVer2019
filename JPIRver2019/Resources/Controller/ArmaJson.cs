@@ -47,9 +47,8 @@ namespace JPIRver2019.Resources.Controller
 
 
            string x = envia.sendJson(datos);
-
-            Settings.estado = x;
-
+           changer changer = new changer();
+           changer.changerStatus(x);
         }
 
 

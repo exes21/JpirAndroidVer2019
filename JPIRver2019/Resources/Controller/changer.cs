@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Net;
 
 using Android.App;
 using Android.Content;
@@ -16,37 +16,30 @@ namespace JPIRver2019.Resources.Controller
     {
         public void changerStatus(string x)
         {
-            string statusSwitch = x;
+            var statusSwitch = (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), x);
+
 
             switch (statusSwitch)
             {
-                case "200":
+                case HttpStatusCode.OK:
                     Settings.estado = "Conectada";
                     break;
-                case "403":
+                case HttpStatusCode.Unauthorized:
                     Settings.estado = "Error en el usuario";
                     break;
-
-                case "404":
+                case HttpStatusCode.RequestTimeout:
+                case HttpStatusCode.GatewayTimeout:
                     Settings.estado = "Servidor inalcanzable";
                     break;
-
-                case "441":
+                case HttpStatusCode.Forbidden:
                     Settings.estado = "No se encuentra AP";
                     break;
-
-                case "440":
+                case HttpStatusCode.Conflict:
                     Settings.estado = "AP sin zona";
                     break;
-
-                case "500":
+                default:
                     Settings.estado = "Error interno en el servidor";
                     break;
-
-                default:
-
-                    break;
-
             }
         }
     }
